@@ -36,7 +36,7 @@ Create a .env file in the backend directory and add your OpenAI API key:
 
 Copy
 OPENAI_API_KEY=your_api_key_here
-PORT=5000
+PORT=5001
 Frontend setup:
 
 Copy
