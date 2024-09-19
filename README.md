@@ -48,7 +48,7 @@ Start the backend server:
 Copy
 cd backend
 npm start
-The server will start on http://localhost:5000
+The server will start on http://localhost:5001
 In a new terminal, start the frontend development server:
 
 Copy
