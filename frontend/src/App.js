@@ -13,7 +13,7 @@ function App() {
     setChatHistory((prev) => [...prev, userMessage]);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/chat', {
+      const response = await axios.post('http://localhost:5000/api/chat', {
         message,
         chatHistory: chatHistory.map(msg => [msg.role, msg.content]),
       });

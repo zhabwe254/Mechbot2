@@ -16,6 +16,7 @@ describe('Server', () => {
 
   after(() => {
     openaiStub.restore();
+    server.close();
   });
 
   describe('POST /api/chat', () => {

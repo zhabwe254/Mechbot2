@@ -1,3 +1,4 @@
+
 import express from 'express';
 import cors from 'cors';
 import openai from './config/open-ai.js';
@@ -31,6 +32,8 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+export { app, server };
