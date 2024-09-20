@@ -25,7 +25,7 @@ Installation
 Clone the repository:
 
 Copy
-git clone https://github.com/yourusername/mechbot.git
+git clone https://github.com/zhabwe/Mechbot2.git
 cd mechbot
 Backend setup:
 
