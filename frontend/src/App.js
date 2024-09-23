@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
@@ -13,7 +13,7 @@ function App() {
     setChatHistory((prev) => [...prev, userMessage]);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await axios.post('http://localhost:5001/api/chat', {
         message,
         chatHistory: chatHistory.map(msg => [msg.role, msg.content]),
       });
