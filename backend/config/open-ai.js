@@ -1,6 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
 import dotenv from 'dotenv';
-import cors from 'cors';
 
 dotenv.config();
 
@@ -10,9 +9,4 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  optionsSuccessStatus: 200
-};
-
-export { openai, corsOptions };
+export default openai;
