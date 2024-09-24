@@ -1,0 +1,23 @@
+{
+  "name": "mechbot",
+  "version": "1.0.0",
+  "description": "MechBot - AI-powered chatbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm start --prefix backend",
+    "client": "npm start --prefix frontend",
+    "install-all": "npm install && npm install --prefix backend && npm install --prefix frontend"
+  },
+  "keywords": [
+    "chatbot",
+    "AI",
+    "OpenAI"
+  ],
+  "author": "Gideon Habwe",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.5.1",
+    "npm-run-all": "^4.1.5"
+  }
+}
