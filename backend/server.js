@@ -6,16 +6,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-
-app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from your React app
-  methods: ['GET', 'POST'], // Allow specific methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
-}));
-
+app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 5001;
+
+app.get('/api/greeting', (req, res) => {
+  const greeting = 'Hello! I am Mechbot, an AI assistant designed for plumbing, drainage, fire fighting, and HVAC problem solving and troubleshooting.';
+  res.json({ message: greeting });
+});
 
 app.post('/api/chat', async (req, res) => {
   try {

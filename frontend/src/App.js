@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
@@ -6,6 +6,19 @@ import MessageInput from './components/MessageInput';
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
+    const fetchGreeting = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/api/greeting');
+        setGreeting(response.data.message);
+      } catch (error) {
+        console.error('Error fetching greeting:', error);
+      }
+    };
+    fetchGreeting();
+  }, []);
 
   const handleSendMessage = async (message) => {
     setIsLoading(true);
@@ -30,7 +43,11 @@ function App() {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
-      <h1 className="text-3xl font-bold mb-4">MechBot</h1>
+      <header className="flex items-center justify-between mb-4">
+        <h1 className="text-3xl font-bold">Mechbot</h1>
+        <img src="/logo.png" alt="Mechbot Logo" className="h-12" />
+      </header>
+      <p className="mb-4">{greeting}</p>
       <ChatWindow chatHistory={chatHistory} />
       <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
     </div>
