@@ -11,17 +11,15 @@ app.use(express.json());
 
 const port = process.env.PORT || 5001;
 
-app.get('/api/greeting', (req, res) => {
-  const greeting = 'Hello! I am Mechbot, an AI assistant designed for plumbing, drainage, fire fighting, and HVAC problem solving and troubleshooting.';
-  res.json({ message: greeting });
-});
-
 app.post('/api/chat', async (req, res) => {
   try {
     const { message, chatHistory } = req.body;
 
-    const messages = chatHistory.map(([role, content]) => ({ role, content }));
-    messages.push({ role: 'user', content: message });
+    const messages = [
+      { role: 'system', content: 'You are MechBot, a mechanical engineer specialized in plumbing, drainage, fire fighting, and HVAC systems. Your role is to provide expert advice and troubleshooting for construction-related mechanical engineering problems.' },
+      ...chatHistory.map(([role, content]) => ({ role, content })),
+      { role: 'user', content: message }
+    ];
 
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',

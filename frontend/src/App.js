@@ -6,18 +6,15 @@ import MessageInput from './components/MessageInput';
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    const fetchGreeting = async () => {
-      try {
-        const response = await axios.get('http://localhost:5001/api/greeting');
-        setGreeting(response.data.message);
-      } catch (error) {
-        console.error('Error fetching greeting:', error);
+    // Add greeting message when the component mounts
+    setChatHistory([
+      { 
+        role: 'assistant', 
+        content: "Hello! I'm MechBot, your mechanical engineering assistant specialized in plumbing, drainage, fire fighting, and HVAC systems. How can I help you with your construction-related mechanical engineering problems today?"
       }
-    };
-    fetchGreeting();
+    ]);
   }, []);
 
   const handleSendMessage = async (message) => {
@@ -43,11 +40,10 @@ function App() {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
-      <header className="flex items-center justify-between mb-4">
-        <h1 className="text-3xl font-bold">Mechbot</h1>
-        <img src="/logo.png" alt="Mechbot Logo" className="h-12" />
-      </header>
-      <p className="mb-4">{greeting}</p>
+      <div className="flex items-center mb-4">
+        <img src="/logo.png" alt="MechBot Logo" className="w-12 h-12 mr-4" />
+        <h1 className="text-3xl font-bold">MechBot</h1>
+      </div>
       <ChatWindow chatHistory={chatHistory} />
       <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
     </div>
